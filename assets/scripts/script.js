@@ -1,5 +1,16 @@
 var discount = 0;
 
+function saveDiscount(value) {
+    localStorage.setItem('discount', value);
+}
+
+function loadDiscount() {
+    var savedDiscount = localStorage.getItem('discount');
+    if (savedDiscount !== null) {
+        discount = parseFloat(savedDiscount);
+    }
+}
+
 function getProduct(name) {
     document.getElementById('name-game').value = name;
     window.scrollTo(0, document.body.scrollHeight);
@@ -18,9 +29,12 @@ function getProduct(name) {
         var card = document.createElement('div');
         card.className = 'card card-width';
         card.style.cursor = 'pointer';
-        card.onclick = function() {
-            getPaymentMethod(item.price);
-        };
+
+        (function(item) {
+            card.onclick = function() {
+                getPaymentMethod(item.price);
+            };
+        })(item);
 
         var cardImg = document.createElement('img');
         cardImg.src = '../images/diamond.png';
@@ -69,6 +83,13 @@ function getPaymentMethod(price) {
 
     paymentSummary.appendChild(discountText);
 
+    var congratsText = document.createElement('p');
+    congratsText.className = 'fs-5 fw-normal';
+    congratsText.textContent = '(Kamu Hemat ' + (discount * 100) + '%)';
+    congratsText.style.color = 'green';
+
+    paymentSummary.appendChild(congratsText);
+
     var totalPayment = price - (price * discount);
     var totalPaymentText = document.createElement('p');
     totalPaymentText.className = 'fs-5 fw-normal';
@@ -76,14 +97,18 @@ function getPaymentMethod(price) {
 
     paymentSummary.appendChild(totalPaymentText);
 
+    var payButtonContainer = document.createElement('div');
+    payButtonContainer.className = 'd-flex justify-content-center';
+
     var payButton = document.createElement('button');
     payButton.className = 'btn btn-primary mt-3';
     payButton.textContent = 'Proceed to Payment';
     payButton.onclick = function() {
-        alert('Proceeding to payment of Rp ' + price.toLocaleString());
+        alert('Proceeding to payment of Rp ' + totalPayment.toLocaleString());
     };
 
-    paymentSummary.appendChild(payButton);
+    payButtonContainer.appendChild(payButton);
+    paymentSummary.appendChild(payButtonContainer);
 }
 
 function clearPaymentMethod() {
@@ -169,3 +194,139 @@ var arknights = [
     { count: 330, price: 357000 },
     { count: 700, price: 714000 },
 ];
+
+document.querySelector('.btn-outline-primary').addEventListener('click', function() {
+    // Initialize particles effect
+    particlesJS('particles-js', {
+        particles: {
+            number: {
+                value: 100,
+                density: {
+                    enable: true,
+                    value_area: 800
+                }
+            },
+            color: {
+                value: '#ff0000'
+            },
+            shape: {
+                type: 'circle',
+                stroke: {
+                    width: 0,
+                    color: '#000000'
+                },
+                polygon: {
+                    nb_sides: 5
+                }
+            },
+            opacity: {
+                value: 0.5,
+                random: false
+            },
+            size: {
+                value: 3,
+                random: true
+            },
+            line_linked: {
+                enable: true,
+                distance: 150,
+                color: '#ff0000',
+                opacity: 0.4,
+                width: 1
+            },
+            move: {
+                enable: true,
+                speed: 6,
+                direction: 'none',
+                random: false,
+                straight: false,
+                out_mode: 'out',
+                bounce: false,
+                attract: {
+                    enable: false,
+                    rotateX: 600,
+                    rotateY: 1200
+                }
+            }
+        },
+        interactivity: {
+            detect_on: 'canvas',
+            events: {
+                onhover: {
+                    enable: true,
+                    mode: 'repulse'
+                },
+                onclick: {
+                    enable: true,
+                    mode: 'push'
+                },
+                resize: true
+            },
+            modes: {
+                grab: {
+                    distance: 400,
+                    line_linked: {
+                        opacity: 1
+                    }
+                },
+                bubble: {
+                    distance: 400,
+                    size: 40,
+                    duration: 2,
+                    opacity: 8,
+                    speed: 3
+                },
+                repulse: {
+                    distance: 200,
+                    duration: 0.4
+                },
+                push: {
+                    particles_nb: 4
+                },
+                remove: {
+                    particles_nb: 2
+                }
+            }
+        },
+        retina_detect: true
+    });
+
+    // Stop particles effect after 2 seconds
+    setTimeout(function() {
+        document.getElementById('particles-js').innerHTML = '';
+
+        // Show the normal voucher page
+        document.querySelector('main').style.display = 'block';
+
+        // Generate random discount between 10 and 50
+        var randomDiscount = Math.floor(Math.random() * 41) + 10;
+
+        // Display the random discount in the middle of the screen
+        var discountDisplay = document.createElement('div');
+        discount = randomDiscount / 100;
+        
+        saveDiscount(discount);
+
+        var discountParagraph = document.querySelector('.discount-container');
+        discountParagraph.innerHTML = '';
+
+        var discountText = document.createElement('p');
+        discountText.className = 'fs-5 fw-normal';
+        discountText.textContent = 'Discount: ' + randomDiscount + '%';
+
+        discountParagraph.appendChild(discountText);
+
+        // Add event listener to clear the discount display when the follow button is clicked
+        document.querySelector('.btn-outline-primary').addEventListener('click', function() {
+            if (discountParagraph) {
+                discountParagraph.remove();
+            }
+        });
+    }, 2000);
+
+    // Hide the normal voucher page while particles are active
+    document.querySelector('main').style.display = 'none';
+});
+
+// Call loadDiscount when the script is loaded to initialize the discount value
+loadDiscount();
