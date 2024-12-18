@@ -1,11 +1,23 @@
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-
+    .content-margin {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .end-content-margin {
+        margin-bottom: 50px;
+    }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-
+    .content-margin {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .end-content-margin {
+        margin-bottom: 50px;
+    }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -33,9 +45,38 @@
     background-color: #f4f9ff;
 }
 
+.bg-dark-light {
+    background-color: #eef2f5;
+}
+
+.bg-darken-light {
+    background-color: #c0e7e6;
+}
+
 .btn-user {
     border: none; 
     background-color: transparent;
+}
+
+.color-primary {
+    color: #5a68d3;
+}
+
+.margin-section {
+    margin-top: 30px;
+}
+
+.margin-child {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.pad-col {
+    padding: 10px;
+}
+
+.card-width {
+    width: 12rem;
 }
 
 footer {
