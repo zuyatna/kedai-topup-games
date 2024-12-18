@@ -115,7 +115,7 @@ function getItem(name, index) {
 }
 
 var mlbb = [
-    { count: 85, price: 21850 },
+    { count: 85, price: 20900 },
     { count: 170, price: 43700 },
     { count: 250, price: 65500 },
     { count: 500, price: 131000 },
@@ -129,10 +129,10 @@ var ff = [
 ];
 
 var wuwa = [
-    { count: 250, price: 13200 },
-    { count: 500, price: 26400 },
-    { count: 1000, price: 52800 },
-    { count: 2000, price: 105600 },
+    { count: 250, price: 49900 },
+    { count: 500, price: 99900 },
+    { count: 1000, price: 199900 },
+    { count: 2000, price: 399900 },
 ];
 
 var genshin = [
