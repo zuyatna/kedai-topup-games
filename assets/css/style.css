@@ -7,6 +7,9 @@
     .end-content-margin {
         margin-bottom: 50px;
     }
+    .card-width {
+        width: 90%;
+    }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -18,11 +21,23 @@
     .end-content-margin {
         margin-bottom: 50px;
     }
+    .card-width {
+        width: 90%;
+    }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-
+    .content-margin {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .end-content-margin {
+        margin-bottom: 50px;
+    }
+    .card-width {
+        width: 90%;
+    }
 } 
 
 /* Large devices (laptops/desktops, 992px and up) */
@@ -71,15 +86,24 @@
     margin-bottom: 15px;
 }
 
-.pad-col {
-    padding: 10px;
+.pad-col-left {
+    padding-left: 10px;
 }
 
-.card-width {
-    width: 12rem;
+.pad-col-right {
+    padding-right: 10px;
 }
 
-footer {
+.footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.bottom-center {
+    position: absolute;
+    width: 100%;
     background-color: #5a68d3 !important;
     color: #fff !important;
     text-align: center !important;
