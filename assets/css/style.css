@@ -13,6 +13,9 @@
     .input-game {
         width: 70%;
     }
+    .form-contact {
+        width: 90%;
+    }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -29,6 +32,9 @@
     }
     .input-game {
         width: 70%;
+    }
+    .form-contact {
+        width: 90%;
     }
 }
 
@@ -47,6 +53,9 @@
     .input-game {
         width: 70%;
     }
+    .form-contact {
+        width: 70%;
+    }
 } 
 
 /* Large devices (laptops/desktops, 992px and up) */
@@ -61,6 +70,9 @@
     .gallery-news-btn {
         width: 40%;
     }
+    .form-contact {
+        width: 50%;
+    }
 } 
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
@@ -73,6 +85,9 @@
         width: 30%;
     }
     .gallery-news-btn {
+        width: 40%;
+    }
+    .form-contact {
         width: 40%;
     }
 }
