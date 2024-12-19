@@ -150,6 +150,9 @@ function proceedPayment(totalPayment) {
     discount = 0;
     clearProduct();
     clearPaymentMethod();
+    
+    Storage.clear();
+    localStorage.clear();
 }
 
 function clearPaymentMethod() {

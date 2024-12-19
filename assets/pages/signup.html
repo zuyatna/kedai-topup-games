@@ -22,33 +22,41 @@
         <section>
             <div class="container form-login form-margin-top">
                 <div class="canvas-form">
-                    <p class="fs-3 fw-semibold">Login</p>
+                    <p class="fs-3 fw-semibold">Signup</p>
                     <div class="row justify-content-center margin-section">                        
                         <div class="col">
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Email:</label>
-                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                                <label for="exampleFormControlInput1" class="form-label">Name:</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="name">
                             </div>
                             <div class="mb-3">
-                                <label for="exampleFormControlInput2" class="form-label">Password:</label>
+                                <label for="exampleFormControlInput2" class="form-label">Email:</label>
+                                <input type="email" class="form-control" id="exampleFormControlInput2" placeholder="name@example.com">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput3" class="form-label">Password:</label>
                                 <div class="input-group">
-                                    <input type="password" class="form-control" id="exampleFormControlInput2" placeholder="Password">
+                                    <input type="password" class="form-control" id="exampleFormControlInput3" placeholder="Password">
                                     <button class="btn btn-outline-secondary" type="button" id="togglePassword">
                                         <i class="bi bi-eye"></i>
                                     </button>
                                 </div>
                             </div>
-                            <div class="mb-3 row g-3">
-                                <div class="col">                        
-                                    <input type="checkbox" class="form-check-input" id="rememberMe">
-                                    <label class="form-check-label" for="rememberMe">Remember me</label>
-                                </div>
-                                <div class="col d-flex justify-content-end">
-                                    <a href="#" class="text-decoration-none">Forgot password?</a>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput4" class="form-label">Confirm Password:</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="exampleFormControlInput4" placeholder="Password">
+                                    <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
                                 </div>
                             </div>
+                            <div class="mb-3">
+                                <input type="checkbox" class="form-check-input" id="rememberMe">
+                                <label class="form-check-label" for="rememberMe">I accept all terms & conditions</label>                           
+                            </div>
                             <button class="btn btn-primary btn-login">Login</button>
-                            <p class="text-center text-margin-top">Don't have an account? <a class="text-decoration-none" href="../pages/signup.html">Signup now</a></p>
+                            <p class="text-center text-margin-top">Already have an account? <a class="text-decoration-none" href="../pages/login.html">Login now</a></p>
                         </div>
                     </div>
                 </div>
