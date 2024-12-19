@@ -140,9 +140,6 @@ function getPaymentMethod(price) {
         proceedPayment(totalPayment);
     };
 
-    saveDiscount(0);
-    discount = 0;
-
     payButtonContainer.appendChild(payButton);
     paymentSummary.appendChild(payButtonContainer);
 }
