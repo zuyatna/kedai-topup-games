@@ -252,7 +252,6 @@ var arknights = [
 document.addEventListener('DOMContentLoaded', function() {
     const gachaElement = document.querySelector('.gacha');
     
-    // Only add event listener if element exists
     if (gachaElement) {
         gachaElement.addEventListener('click', function() {
             particlesJS('particles-js', {
@@ -384,13 +383,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const togglePassword = document.getElementById('togglePassword');
     const passwordInput = document.getElementById('exampleFormControlInput2');
     
-    // Only add event listener if elements exist
     if (togglePassword && passwordInput) {
         togglePassword.addEventListener('click', function() {
             const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordInput.setAttribute('type', type);
             
-            // Toggle icon
             const icon = this.querySelector('i');
             if (icon) {
                 icon.classList.toggle('bi-eye');

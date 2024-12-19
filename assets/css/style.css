@@ -144,9 +144,31 @@
     background-color: #c0e7e6;
 }
 
+.logo-color {
+    color: #007bff;
+}
+
+.card-parent {
+    margin-bottom: 30px;
+}
+
+.card-pointer {
+    cursor: pointer;
+}
+
+.payment-parent {
+    margin-top: 50px; 
+    margin-bottom: 50px;
+}
+
 .btn-user {
     border: none; 
     background-color: transparent;
+}
+
+.btn-login {
+    width: 100%; 
+    margin-top: 10%;
 }
 
 .color-primary {
@@ -172,6 +194,14 @@
 
 .form-contact {
     width: 40%;
+}
+
+.form-margin-top {
+    margin-top: 100px;
+}
+
+.text-margin-top {
+    margin-top: 15px;
 }
 
 .canvas-form {
