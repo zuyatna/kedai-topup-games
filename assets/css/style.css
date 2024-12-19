@@ -16,6 +16,11 @@
     .form-contact {
         width: 90%;
     }
+    .canvas-form {
+        margin-top: 12px;
+        margin-bottom: 25px;
+        padding: 5%;
+    }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -35,6 +40,14 @@
     }
     .form-contact {
         width: 90%;
+    }
+    .form-login {
+        width: 60%;
+    }
+    .canvas-form {
+        margin-top: 12px;
+        margin-bottom: 25px;
+        padding: 5%;
     }
 }
 
@@ -56,6 +69,14 @@
     .form-contact {
         width: 70%;
     }
+    .form-login {
+        width: 45%;
+    }
+    .canvas-form {
+        margin-top: 12px;
+        margin-bottom: 25px;
+        padding: 5%;
+    }
 } 
 
 /* Large devices (laptops/desktops, 992px and up) */
@@ -71,7 +92,12 @@
         width: 40%;
     }
     .form-contact {
-        width: 50%;
+        width: 35%;
+    }
+    .canvas-form {
+        margin-top: 12px;
+        margin-bottom: 25px;
+        padding: 5%;
     }
 } 
 
@@ -89,6 +115,14 @@
     }
     .form-contact {
         width: 40%;
+    }
+    .form-login {
+        width: 25%;
+    }
+    .canvas-form {
+        margin-top: 25px;
+        margin-bottom: 25px;
+        padding: 5%;
     }
 }
 
@@ -134,6 +168,17 @@
 
 .pad-col-right {
     padding-right: 10px;
+}
+
+.form-contact {
+    width: 40%;
+}
+
+.canvas-form {
+    background-color: white;
+    width: auto;
+    height: 100%;
+    border-radius: 15px;
 }
 
 .footer {

@@ -249,129 +249,155 @@ var arknights = [
 ];
 
 // https://github.com/VincentGarreau/particles.js/?tab=readme-ov-file
-document.querySelector('.btn-outline-primary').addEventListener('click', function() {
-    particlesJS('particles-js', {
-        particles: {
-            number: {
-                value: 100,
-                density: {
-                    enable: true,
-                    value_area: 800
-                }
-            },
-            color: {
-                value: '#ff0000'
-            },
-            shape: {
-                type: 'circle',
-                stroke: {
-                    width: 0,
-                    color: '#000000'
-                },
-                polygon: {
-                    nb_sides: 5
-                }
-            },
-            opacity: {
-                value: 0.5,
-                random: false
-            },
-            size: {
-                value: 3,
-                random: true
-            },
-            line_linked: {
-                enable: true,
-                distance: 150,
-                color: '#ff0000',
-                opacity: 0.4,
-                width: 1
-            },
-            move: {
-                enable: true,
-                speed: 6,
-                direction: 'none',
-                random: false,
-                straight: false,
-                out_mode: 'out',
-                bounce: false,
-                attract: {
-                    enable: false,
-                    rotateX: 600,
-                    rotateY: 1200
-                }
-            }
-        },
-        interactivity: {
-            detect_on: 'canvas',
-            events: {
-                onhover: {
-                    enable: true,
-                    mode: 'repulse'
-                },
-                onclick: {
-                    enable: true,
-                    mode: 'push'
-                },
-                resize: true
-            },
-            modes: {
-                grab: {
-                    distance: 400,
+document.addEventListener('DOMContentLoaded', function() {
+    const gachaElement = document.querySelector('.gacha');
+    
+    // Only add event listener if element exists
+    if (gachaElement) {
+        gachaElement.addEventListener('click', function() {
+            particlesJS('particles-js', {
+                particles: {
+                    number: {
+                        value: 100,
+                        density: {
+                            enable: true,
+                            value_area: 800
+                        }
+                    },
+                    color: {
+                        value: '#ff0000'
+                    },
+                    shape: {
+                        type: 'circle',
+                        stroke: {
+                            width: 0,
+                            color: '#000000'
+                        },
+                        polygon: {
+                            nb_sides: 5
+                        }
+                    },
+                    opacity: {
+                        value: 0.5,
+                        random: false
+                    },
+                    size: {
+                        value: 3,
+                        random: true
+                    },
                     line_linked: {
-                        opacity: 1
+                        enable: true,
+                        distance: 150,
+                        color: '#ff0000',
+                        opacity: 0.4,
+                        width: 1
+                    },
+                    move: {
+                        enable: true,
+                        speed: 6,
+                        direction: 'none',
+                        random: false,
+                        straight: false,
+                        out_mode: 'out',
+                        bounce: false,
+                        attract: {
+                            enable: false,
+                            rotateX: 600,
+                            rotateY: 1200
+                        }
                     }
                 },
-                bubble: {
-                    distance: 400,
-                    size: 40,
-                    duration: 2,
-                    opacity: 8,
-                    speed: 3
+                interactivity: {
+                    detect_on: 'canvas',
+                    events: {
+                        onhover: {
+                            enable: true,
+                            mode: 'repulse'
+                        },
+                        onclick: {
+                            enable: true,
+                            mode: 'push'
+                        },
+                        resize: true
+                    },
+                    modes: {
+                        grab: {
+                            distance: 400,
+                            line_linked: {
+                                opacity: 1
+                            }
+                        },
+                        bubble: {
+                            distance: 400,
+                            size: 40,
+                            duration: 2,
+                            opacity: 8,
+                            speed: 3
+                        },
+                        repulse: {
+                            distance: 200,
+                            duration: 0.4
+                        },
+                        push: {
+                            particles_nb: 4
+                        },
+                        remove: {
+                            particles_nb: 2
+                        }
+                    }
                 },
-                repulse: {
-                    distance: 200,
-                    duration: 0.4
-                },
-                push: {
-                    particles_nb: 4
-                },
-                remove: {
-                    particles_nb: 2
-                }
-            }
-        },
-        retina_detect: true
-    });
+            });
 
-    setTimeout(function() {
-        document.getElementById('particles-js').innerHTML = '';
-
-        document.querySelector('main').style.display = 'block';
-
-        var randomDiscount = Math.floor(Math.random() * 41) + 10;
-
-        discount = randomDiscount / 100;
+            setTimeout(function() {
+                document.getElementById('particles-js').innerHTML = '';
         
-        saveDiscount(discount);
+                document.querySelector('main').style.display = 'block';
+        
+                var randomDiscount = Math.floor(Math.random() * 41) + 10;
+        
+                discount = randomDiscount / 100;
+                
+                saveDiscount(discount);
+        
+                var discountParagraph = document.querySelector('.discount-container');
+                discountParagraph.innerHTML = '';
+        
+                var discountText = document.createElement('p');
+                discountText.className = 'fs-5 fw-normal margin-section';
+                discountText.textContent = 'Selamat kamu mendapatkan diskon: ' + randomDiscount + '%';
+        
+                discountParagraph.appendChild(discountText);
+        
+                document.querySelector('.btn-outline-primary').addEventListener('click', function() {
+                    if (discountParagraph) {
+                        discountParagraph.remove();
+                    }
+                });
+            }, 2000);
+        
+            document.querySelector('main').style.display = 'none';
+        });
+    }
+});
 
-        var discountParagraph = document.querySelector('.discount-container');
-        discountParagraph.innerHTML = '';
-
-        var discountText = document.createElement('p');
-        discountText.className = 'fs-5 fw-normal margin-section';
-        discountText.textContent = 'Selamat kamu mendapatkan diskon: ' + randomDiscount + '%';
-
-        discountParagraph.appendChild(discountText);
-
-        document.querySelector('.btn-outline-primary').addEventListener('click', function() {
-            if (discountParagraph) {
-                discountParagraph.remove();
+document.addEventListener('DOMContentLoaded', function() {
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('exampleFormControlInput2');
+    
+    // Only add event listener if elements exist
+    if (togglePassword && passwordInput) {
+        togglePassword.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            // Toggle icon
+            const icon = this.querySelector('i');
+            if (icon) {
+                icon.classList.toggle('bi-eye');
+                icon.classList.toggle('bi-eye-slash');
             }
         });
-    }, 2000);
-
-    document.querySelector('main').style.display = 'none';
+    }
 });
 
 loadDiscount();
