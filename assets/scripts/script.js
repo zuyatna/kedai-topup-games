@@ -71,31 +71,64 @@ function getPaymentMethod(price) {
     var paymentSummary = document.querySelector('.payment-summary');
     paymentSummary.innerHTML = '';
 
-    var paymentText = document.createElement('p');
-    paymentText.className = 'fs-5 fw-normal';
-    paymentText.textContent = 'Payment: Rp ' + price.toLocaleString();
+    var table = document.createElement('table');
+    table.className = 'table';
 
-    paymentSummary.appendChild(paymentText);
+    var tbody = document.createElement('tbody');
 
-    var discountText = document.createElement('p');
-    discountText.className = 'fs-5 fw-normal';
-    discountText.textContent = 'Discount: Rp ' + (price * discount).toLocaleString();
+    var paymentRow = document.createElement('tr');
+    var paymentLabel = document.createElement('td');
+    paymentLabel.textContent = 'Payment:';
 
-    paymentSummary.appendChild(discountText);
+    var paymentValue = document.createElement('td');
+    paymentValue.textContent = 'Rp ' + price.toLocaleString();
+    paymentRow.appendChild(paymentLabel);
+    paymentRow.appendChild(paymentValue);
+    tbody.appendChild(paymentRow);
 
-    var congratsText = document.createElement('p');
-    congratsText.className = 'fs-5 fw-normal';
-    congratsText.textContent = '(Kamu Hemat ' + (discount * 100) + '%)';
-    congratsText.style.color = 'green';
+    var discountRow = document.createElement('tr');
+    var discountLabel = document.createElement('td');
+    discountLabel.textContent = 'Discount:';
 
-    paymentSummary.appendChild(congratsText);
+    var discountValue = document.createElement('td');
+
+    if (discount > 0) {
+        discountValue.textContent = '- Rp ' + (price * discount).toLocaleString();
+        discountValue.style.color = 'green';
+        discountRow.appendChild(discountLabel);
+        discountRow.appendChild(discountValue);
+        tbody.appendChild(discountRow);
+
+        var congratsRow = document.createElement('tr');
+        var congratsLabel = document.createElement('td');
+        congratsLabel.textContent = 'Kamu Hemat:';
+
+        var congratsValue = document.createElement('td');
+        congratsValue.textContent = (discount * 100) + '%';
+        congratsValue.style.color = 'green';
+        congratsRow.appendChild(congratsLabel);
+        congratsRow.appendChild(congratsValue);
+        tbody.appendChild(congratsRow);
+    } else {
+        discountValue.textContent = 'Rp 0';
+        discountRow.appendChild(discountLabel);
+        discountRow.appendChild(discountValue);
+        tbody.appendChild(discountRow);
+    }
 
     var totalPayment = price - (price * discount);
-    var totalPaymentText = document.createElement('p');
-    totalPaymentText.className = 'fs-5 fw-normal';
-    totalPaymentText.textContent = 'Total Payment: Rp ' + totalPayment.toLocaleString();
+    var totalPaymentRow = document.createElement('tr');
+    var totalPaymentLabel = document.createElement('td');
+    totalPaymentLabel.textContent = 'Total Payment:';
 
-    paymentSummary.appendChild(totalPaymentText);
+    var totalPaymentValue = document.createElement('td');
+    totalPaymentValue.textContent = 'Rp ' + totalPayment.toLocaleString();
+    totalPaymentRow.appendChild(totalPaymentLabel);
+    totalPaymentRow.appendChild(totalPaymentValue);
+    tbody.appendChild(totalPaymentRow);
+
+    table.appendChild(tbody);
+    paymentSummary.appendChild(table);
 
     var payButtonContainer = document.createElement('div');
     payButtonContainer.className = 'd-flex justify-content-center';
@@ -104,16 +137,39 @@ function getPaymentMethod(price) {
     payButton.className = 'btn btn-primary mt-3';
     payButton.textContent = 'Proceed to Payment';
     payButton.onclick = function() {
-        alert('Proceeding to payment of Rp ' + totalPayment.toLocaleString());
+        proceedPayment(totalPayment);
     };
+
+    saveDiscount(0);
+    discount = 0;
 
     payButtonContainer.appendChild(payButton);
     paymentSummary.appendChild(payButtonContainer);
 }
 
+function proceedPayment(totalPayment) {
+    alert('Proceeding to payment of Rp ' + totalPayment.toLocaleString());
+    saveDiscount(0);
+    discount = 0;
+    clearProduct();
+    clearPaymentMethod();
+}
+
 function clearPaymentMethod() {
     var paymentSummary = document.querySelector('.payment-summary');
     paymentSummary.innerHTML = '';
+}
+
+function clearProduct() {
+    document.getElementById('name-game').value = 'Pilih game terlebih dahulu...';
+    var container = document.querySelector('.pilih-item');
+    container.innerHTML = '';
+
+    var textPlaceholder = document.createElement('p');
+    textPlaceholder.className = 'fs-6 fw-normal';
+    textPlaceholder.textContent = 'Pilih item terlebih dahulu!';
+
+    container.appendChild(textPlaceholder);
 }
 
 function getItem(name, index) {
@@ -195,8 +251,8 @@ var arknights = [
     { count: 700, price: 714000 },
 ];
 
+// https://github.com/VincentGarreau/particles.js/?tab=readme-ov-file
 document.querySelector('.btn-outline-primary').addEventListener('click', function() {
-    // Initialize particles effect
     particlesJS('particles-js', {
         particles: {
             number: {
@@ -291,18 +347,13 @@ document.querySelector('.btn-outline-primary').addEventListener('click', functio
         retina_detect: true
     });
 
-    // Stop particles effect after 2 seconds
     setTimeout(function() {
         document.getElementById('particles-js').innerHTML = '';
 
-        // Show the normal voucher page
         document.querySelector('main').style.display = 'block';
 
-        // Generate random discount between 10 and 50
         var randomDiscount = Math.floor(Math.random() * 41) + 10;
 
-        // Display the random discount in the middle of the screen
-        var discountDisplay = document.createElement('div');
         discount = randomDiscount / 100;
         
         saveDiscount(discount);
@@ -311,12 +362,11 @@ document.querySelector('.btn-outline-primary').addEventListener('click', functio
         discountParagraph.innerHTML = '';
 
         var discountText = document.createElement('p');
-        discountText.className = 'fs-5 fw-normal';
-        discountText.textContent = 'Discount: ' + randomDiscount + '%';
+        discountText.className = 'fs-5 fw-normal margin-section';
+        discountText.textContent = 'Selamat kamu mendapatkan diskon: ' + randomDiscount + '%';
 
         discountParagraph.appendChild(discountText);
 
-        // Add event listener to clear the discount display when the follow button is clicked
         document.querySelector('.btn-outline-primary').addEventListener('click', function() {
             if (discountParagraph) {
                 discountParagraph.remove();
@@ -324,9 +374,7 @@ document.querySelector('.btn-outline-primary').addEventListener('click', functio
         });
     }, 2000);
 
-    // Hide the normal voucher page while particles are active
     document.querySelector('main').style.display = 'none';
 });
 
-// Call loadDiscount when the script is loaded to initialize the discount value
 loadDiscount();

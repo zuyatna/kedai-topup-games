@@ -58,6 +58,9 @@
     .input-game {
         width: 30%;
     }
+    .gallery-news-btn {
+        width: 40%;
+    }
 } 
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
@@ -68,6 +71,9 @@
     }
     .input-game {
         width: 30%;
+    }
+    .gallery-news-btn {
+        width: 40%;
     }
 }
 
