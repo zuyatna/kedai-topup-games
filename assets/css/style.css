@@ -144,7 +144,7 @@
     background-color: #c0e7e6;
 }
 
-.logo-color {
+.navbar-brand.logo-color:link, .navbar-brand.logo-color:hover {
     color: #007bff;
 }
 
